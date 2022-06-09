@@ -1,0 +1,43 @@
+{% extends 'tankenapp/index.html' %}
+{% load static %}
+
+
+{% block title %}Login{% endblock %} 
+
+{% block content %}
+        <h1 style=text-align:left color:blue>Login</h1>
+        <!-- CSS only -->
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <style>
+                .login_form {
+                        width: 300px;
+                }
+        </style>
+
+        <form class= "login_form" method="post">
+                {% csrf_token %}
+                <!-- Token muss immer mitgeschickt werden bei Forms-->
+                <div class="mb-3">
+                  <label for="username_input" class="form-label">Benutzer</label>
+                  <input type="text" class="form-control" id="username" name="username" aria-describedby="userHelp">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Passwort</label>
+                  <input type="password" class="form-control" name = "password" id="password">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="toggle-password">
+                  <label class="form-check-label" for="exampleCheck1">Passwort anzeigen (geht noch nicht)</label>
+  <!-- CSS only Javascript for toggle password?-->
+                  
+                </div>
+                <button type="submit" class="btn btn-primary">Absenden</button>
+                <br> <br>
+                <p>Noch keinen Account?  <a href = "{% url 'register' %}">Registrieren</a></p>
+              </form>
+
+
+
+{% endblock %}       

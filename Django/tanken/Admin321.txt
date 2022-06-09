@@ -1,0 +1,30 @@
+cd C:\Users\dedtica\OneDrive - Molnlycke Health Care AB\_Studium\Vorlesungen\5 Semester\Webtechnologie\Django\tanken
+
+cd Django
+cd tanken
+python manage.py runserver	
+
+python3 manage.py runserver	
+
+
+git clone https://github.com/<username>/<forked-repo>.git
+
+https://github.com/maxim0103/Web-Technologie.git
+
+
+
+
+conda activate tanken
+python manage.py runserver	
+
+
+
+# https://www.w3schools.com/html/
+
+
+Google_API_Key=AIzaSyBm1wsWiSIHLpSEianmorGkkZRVnNtbMhk
+
+
+
+pip install Django
+pip install requests

@@ -1,0 +1,36 @@
+{% extends 'tankenapp/index.html' %}
+{% load static %}
+
+
+{% block title %}Registrieren{% endblock %} 
+
+{% block content %}
+        <h1 style=text-align:left color:blue>Registrieren</h1>
+     
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <style>
+                .register_form {
+                        width: 300px;
+                }
+        </style>
+
+
+        <form class = register_form method='post'>
+                
+                {% csrf_token %}
+                {% for field in form %}
+                 <!-- Alle Felder in "form" nacheinander aufrufen-->
+
+                <div class="mb-3">
+                         <!-- Feld Label und Feld aufrufen -->
+                <label for="exampleInputPassword1" class="form-label">{{field.label}}</label>
+                {{field}}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Absenden</button>
+                <p>Du hast bereits einen Account <a href="{% url 'login' %}">Login</a></p>
+
+        </form>
+    
+{% endblock %}  

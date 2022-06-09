@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<!-- Das Template ist der Master, wird extended an alle anderen Templates-->
+
+<html> 
+    
+    <head>
+        <!-- block title oder anderer block kann aus anderen Templates übverschrieben werden-->
+
+        <meta charset="utf-8">
+        <title>{% block title %}Fahrtkostenrechner{% endblock %}   </title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Style anpassen für wrapper div-->      
+    <style>
+      .wrapper{
+        display: flex;
+        align-items: center;
+        height: 80vh;
+        justify-content: center;
+      }
+    </style>
+
+
+    </head>
+
+
+    <body style="background-color:rgb(212, 234, 237);">
+
+      <!-- Top Navigationsleiste - Style von bootstrap -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">  
+      <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-navbar">
+          <div class="container">
+            <!-- Onlick Verlinkung zu anderem Template (html)-->
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/Tankbild.png' %}"  height="80" width="80" alt="" ></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <br>
+
+              <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                <!-- Wenn User angemeldet, dann kann er /fare/ sehen und aufrufen-->
+                {% if request.user.is_authenticated %}
+                <a class="nav-link" href="{% url 'fare' %}">Fahrtkosten berechnen</a>
+                {% endif%}
+                
+                <!-- Wenn nicht, dann sieht er Login und Register-->
+                {% if not request.user.is_authenticated %}
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'register' %}">Registrieren</a>
+                {% endif%}
+                
+                <!-- Wahrscheinlich nicht mehr benötigit ( zum verstecken von Feldern auf anderen Templates) -->
+                {% block hide_menu%}
+                {% endblock hide_menu%}
+
+                <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+                <!-- Wenn User angemeldet, dann kann er sich abmelden, sonst Button unsichtbar-->
+                {% if request.user.is_authenticated %}
+                  <div class="mb-3">
+                  <a href="{% url 'logout' %}" class="btn btn-light btn-block btn-sm m-1">Logout</a>
+                  
+                  </div>   
+                {% endif%}
+
+              </div>
+        </header>
+
+        
+        
+        <div class="container">
+          <!-- oben über .wrapper mit Style angepasst -->
+          <div class ="wrappper">
+
+          
+        <!-- Innerhalb der Klammern block kann Content auf Hauptseite angepasst werden, dazu gleicehn Block in anderem Template aufrufen und befüllen-->
+        {% block content %}
+                
+        {% endblock %} 
+         </div>
+       </div>  
+       
+     
+  
+        
+        
+
+    </body> 
+
+
+    <footer>
+    
+    </footer>
+
+
+<html>

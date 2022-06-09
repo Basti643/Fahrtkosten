@@ -1,0 +1,66 @@
+{% extends 'tankenapp/index.html' %}
+{% load static %}
+{% csrf_token %}
+
+{% block title %}Fahrtkosten berechnen{% endblock %} 
+
+{% block content %}
+        <h1 style=text-align:left color:blue>Fahrtkosten berechnen</h1>
+
+        {% if request.user.is_authenticated %}
+        <p>Hallo <b>{{request.user}}</b>!</p>       
+        {% endif%}
+
+        {% block hide_menu%}
+        
+        {% endblock hide_menu%}
+        <h4 style=text-align:left color:blue>1. Günstigsten Benzinpreis in deiner Nähe anzeigen</h4>
+
+         <!-- Hier muss wahrscheinlich angepasst werden -> zu FORM  
+        vielleicht alle Inputs in neuer Form/DB speichern und dann berechnung ausgeben? 
+        ALternative?
+        -->
+        <div class="container">
+
+                <label for="id-google-address-a">Mein Standort</label>
+                <input type="text" placeholder="*Hier Standort eingeben" id="id-google-address-a" name="google_address_a">
+                <p></p>
+                
+                <label for="fuel_type">Benzin-Auswahl</label>
+                <select name="fuel_type">
+                        <option value="" disabled selected>-Bitte Benzin auswählen-</option>
+                        <option value ="e5">E5 - Super 95</option>
+                        <option value ="e5">E10</option>
+                        <option value ="e5">Diesel</option>
+                </select>
+                <p></p>
+                <label for="radius">Radius für Benzinpreis-Suche</label>
+                <input type="text" placeholder="*Hier Zahl in km eingeben (1-25)" id="radius" name="radius" size="30">
+        </div>
+        <br>
+
+        <h4 style=text-align:left color:blue>2. Wähle nun Start- und Zieladresse deiner Fahrt aus</h4>
+
+        <div class="container">
+
+                <label for="id-google-address-a">Startdresse</label>
+                <input type="text" placeholder="*Startdresse eingeben" id="origin_loc" name="origin_loc">
+                <p></p>
+                <label for="id-google-address-c">Zieladresse</label>
+                <input type="text" placeholder="*Zieladresse eingeben" id="destination_loc" name="destination_loc">
+
+        
+        </div>
+        <p></p>
+        <button type="button">Kosten berechnen</button>
+        
+        <!-- 
+        <input type="hidden" class="geo" id="Testhidden" value="">
+
+         <br>
+        <br>
+        {{test_variable}}<br>
+        <br>
+        !-->
+
+{% endblock %}       

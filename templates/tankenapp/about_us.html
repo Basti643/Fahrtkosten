@@ -1,0 +1,18 @@
+{% extends 'tankenapp/index.html' %}
+{% load static %}
+
+
+{% block title %}About us{% endblock %} 
+
+{% block content %}
+        <h1 style=text-align:left color:blue>About us</h1>
+        {% if request.user.is_authenticated %}         
+        {% endif%}
+
+        {% block hide_menu%}       
+        {% endblock hide_menu%}
+        
+        <p class="lead"> Sponsored by: Tim, Sebastian, Maxim, Hendrik, Damien</p>
+         <!-- Easteregg -->
+        <a class="navbar-brand" href="https://www.yout-ube.com/watch?v=dQw4w9WgXcQ"><img src="{% static 'img/harold.jpg' %}"  height="250" width="370" alt="" ></a>
+{% endblock %}       

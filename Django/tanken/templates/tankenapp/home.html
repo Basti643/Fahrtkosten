@@ -1,0 +1,31 @@
+{% extends 'tankenapp/index.html' %}
+{% load static %}
+
+
+{% block title %}Startseite{% endblock %} 
+
+{% block content %}
+        <h1 style=text-align:left color:blue>Willkommen auf Kek25.de</h1>
+         <!-- Wenn user angemeldet, dann wrid sein Usernamen oben angezeigt -->
+        {% if request.user.is_authenticated %}
+                <h4>Hallo <b>{{request.user}}</b></h4>
+                <h3 class="lead">Starte die <a href = "{% url 'fare' %}"><b>Kostenberechnung</b></a> deiner Fahrt </h3>
+                      
+        {% endif%}
+         <!-- Wenn nicht, dann soll er sich anmelden oder registrieren-->
+        {% if not request.user.is_authenticated %}
+                <p>Hallo {{request.user}}</p>       
+
+
+                <h3 class="lead"> Bitte melde dich an oder erstelle einen neuen Account, um die Fahrtkostenberechnung zu starten</h3>
+                <br>
+
+                <p>Du hast bereits einen Account <a href="{% url 'login' %}">Login</a></p>
+                <p>Noch keinen Account?  <a href = "{% url 'register' %}">Registrieren</a></p>
+        {% endif%}
+
+
+        {% block hide_menu%}
+         
+        {% endblock hide_menu%}
+{% endblock %}       
